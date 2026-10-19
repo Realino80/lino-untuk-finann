@@ -39,5 +39,25 @@ button{border:0;border-radius:999px;padding:14px 25px;font-size:16px;font-weight
 const petals=document.getElementById('petals');for(let i=0;i<22;i++){const el=document.createElement('span');el.className='petal';el.textContent=['🌸','💗','🌷','💕'][i%4];el.style.left=Math.random()*100+'%';el.style.animationDuration=(7+Math.random()*8)+'s';el.style.animationDelay=(-Math.random()*12)+'s';el.style.fontSize=(14+Math.random()*15)+'px';petals.appendChild(el)}
 const noBtn=document.getElementById('no');function dodge(){noBtn.style.transform=`translate(${Math.random()*160-80}px,${Math.random()*90-45}px)`}noBtn.addEventListener('pointerenter',dodge);noBtn.addEventListener('click',dodge);
 document.getElementById('yes').addEventListener('click',()=>{document.getElementById('result').style.display='block';document.getElementById('today').textContent=new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});for(let i=0;i<26;i++){const heart=document.createElement('span');heart.className='heart';heart.textContent=['💗','💖','💕','💘','✨'][i%5];heart.style.left=Math.random()*100+'vw';heart.style.animationDelay=Math.random()*.8+'s';document.body.appendChild(heart);setTimeout(()=>heart.remove(),4500)}});
-const music=document.getElementById('music'),musicBtn=document.getElementById('musicBtn');musicBtn.addEventListener('click',async()=>{if(music.paused){try{await music.play();musicBtn.textContent='⏸️ Jeda musik'}catch{musicBtn.textContent='Tambahkan pandangan-pertama.mp3 dulu 🎵'}}else{music.pause();musicBtn.textContent='🎵 Putar musik'}});
+
+const music = document.getElementById('music');
+const musicBtn = document.getElementById('musicBtn');
+
+musicBtn.addEventListener('click', async () => {
+  if (music.paused) {
+    musicBtn.textContent = '⏳ Memuat musik...';
+    try {
+      music.load();
+      await music.play();
+      musicBtn.textContent = '⏸️ Jeda musik';
+    } catch (error) {
+      console.error('Gagal memutar musik:', error);
+      musicBtn.textContent = '⚠️ Musik gagal diputar — coba lagi';
+    }
+  } else {
+    music.pause();
+    musicBtn.textContent = '🎵 Putar musik';
+  }
+});
+
 </script></body></html>
