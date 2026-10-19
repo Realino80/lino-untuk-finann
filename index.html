@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buat Fin'an 💗 — dari Lino</title>
+<style>
+:root{--pink:#ff78a8;--deep:#e94d87;--pale:#fff0f6;--ink:#63354b}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;overflow-x:hidden;font-family:"Trebuchet MS",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at top,#fffafd,#ffe5f0 55%,#ffd4e6);display:flex;align-items:center;justify-content:center;padding:22px}
+.petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}.petal{position:absolute;top:-30px;animation:fall linear infinite;opacity:.65}@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+.card{position:relative;z-index:1;width:min(100%,620px);padding:clamp(24px,5vw,42px);border:2px solid #ffffffdd;border-radius:30px;background:#ffffffd9;box-shadow:0 18px 60px #d95c8b2b;text-align:center;backdrop-filter:blur(8px)}
+.flower{font-size:clamp(50px,10vw,78px);display:inline-block;animation:bob 2.2s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-8px) rotate(5deg)}}
+h1{color:var(--deep);font-size:clamp(27px,6vw,42px);margin:12px 0 8px}.subtitle{margin:0 0 24px;color:#a45a78}
+.letter{text-align:left;background:#fff7fb;border:1px dashed #ff9fc2;border-radius:20px;padding:20px;line-height:1.75}.letter p{margin:0 0 12px}.letter p:last-child{margin-bottom:0}.signature{text-align:right;color:var(--deep);font-weight:bold;margin-top:14px}
+.question{margin:26px 0 16px;font-size:clamp(20px,4.5vw,27px);font-weight:800;color:#d83e7b}.buttons{min-height:58px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+button{border:0;border-radius:999px;padding:14px 25px;font-size:16px;font-weight:bold;cursor:pointer;transition:transform .2s,box-shadow .2s}button:hover{transform:translateY(-2px)}#yes{background:linear-gradient(135deg,#ff75a7,#ef4384);color:white;box-shadow:0 7px 18px #f26b9b55}#no{background:#fff;color:#bd5b82;border:1px solid #ffc1d7;position:relative}
+.music{margin-top:22px;background:#fff0f6;color:#c94d7d;border:1px solid #ffc5d9;padding:10px 17px;font-size:14px}.small{font-size:12px;color:#b07b91;margin-top:14px}
+#result{display:none;margin-top:24px;padding:22px;border-radius:20px;background:#fff0f6;line-height:1.7}#result h2{color:var(--deep);margin:0 0 8px}
+.heart{position:fixed;bottom:-30px;font-size:22px;animation:rise 3.5s ease-out forwards;z-index:5;pointer-events:none}@keyframes rise{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style></head>
+<body><div class="petals" id="petals" aria-hidden="true"></div>
+<main class="card"><div class="flower" aria-hidden="true">🌷</div><h1>Hai, Fin'an! 💗</h1>
+<p class="subtitle">Ada surat kecil dari seseorang yang agak malu-malu...</p>
+<section class="letter" aria-label="Surat untuk Fin'an">
+<p>Dear Fin'an yang manis, 🌸</p>
+<p>Aku tuh awalnya mau bersikap biasa aja. Tapi kok, tiap ada kamu, hati aku malah bertingkah kayak Wi-Fi ketemu sinyal penuh: <b>langsung nyambung terus!</b> 😭💘</p>
+<p>Aku nggak janji jadi orang paling sempurna, tapi aku mau jadi orang yang bikin kamu senyum, nemenin kamu cerita, dan ngingetin kalau kamu itu spesial.</p>
+<p>Jadi, daripada perasaan ini cuma jadi draft di kepala, mending aku kirim sekarang sebelum keberanian aku logout duluan. 🙈</p>
+<p class="signature">— dari Lino, yang kayaknya mulai suka kamu 💌</p></section>
+<div class="question">Fin'an, mau nggak jadi orang spesial aku? 🥺💕</div>
+<div class="buttons"><button id="yes" type="button">MAUUU 💖</button><button id="no" type="button">GAMAU 🙃</button></div>
+<button class="music" id="musicBtn" type="button">🎵 Putar musik</button>
+<audio id="music" loop preload="none"><source src="pandangan-pertama.mp3" type="audio/mpeg"></audio>
+<p class="small">Tombol musik perlu file <b>pandangan-pertama.mp3</b> di folder yang sama dengan index.html.</p>
+<section id="result" aria-live="polite"><h2>YEAYYYY! 💞🎉</h2>
+<p>Ini beneran hari yang bikin Lino senyum-senyum sendiri! Makasih ya, Fin'an. Mulai sekarang, boleh ya aku jadi salah satu alasan kamu bahagia? 🥹🌷</p>
+<p><b>Hari spesial kita:</b> <span id="today"></span></p><p>— Lino 💗</p></section></main>
+<script>
+const petals=document.getElementById('petals');for(let i=0;i<22;i++){const el=document.createElement('span');el.className='petal';el.textContent=['🌸','💗','🌷','💕'][i%4];el.style.left=Math.random()*100+'%';el.style.animationDuration=(7+Math.random()*8)+'s';el.style.animationDelay=(-Math.random()*12)+'s';el.style.fontSize=(14+Math.random()*15)+'px';petals.appendChild(el)}
+const noBtn=document.getElementById('no');function dodge(){noBtn.style.transform=`translate(${Math.random()*160-80}px,${Math.random()*90-45}px)`}noBtn.addEventListener('pointerenter',dodge);noBtn.addEventListener('click',dodge);
+document.getElementById('yes').addEventListener('click',()=>{document.getElementById('result').style.display='block';document.getElementById('today').textContent=new Date().toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});document.getElementById('result').scrollIntoView({behavior:'smooth',block:'nearest'});for(let i=0;i<26;i++){const heart=document.createElement('span');heart.className='heart';heart.textContent=['💗','💖','💕','💘','✨'][i%5];heart.style.left=Math.random()*100+'vw';heart.style.animationDelay=Math.random()*.8+'s';document.body.appendChild(heart);setTimeout(()=>heart.remove(),4500)}});
+const music=document.getElementById('music'),musicBtn=document.getElementById('musicBtn');musicBtn.addEventListener('click',async()=>{if(music.paused){try{await music.play();musicBtn.textContent='⏸️ Jeda musik'}catch{musicBtn.textContent='Tambahkan pandangan-pertama.mp3 dulu 🎵'}}else{music.pause();musicBtn.textContent='🎵 Putar musik'}});
+</script></body></html>
